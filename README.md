@@ -1,40 +1,84 @@
-# PokeWeb UI
+# PokeWeb - Pokémon Explorer
 
-This React App using Public API: PokeAPI to show list of Pokemon, Detail of Pokemon, and add your favorites pokemon (stored locally).
+PokeWeb is a simple React application that utilizes the public PokeAPI to display a list of Pokémon, detailed information about each Pokémon, and allows users to add their favorite Pokémon to a favorites list (stored locally using browser storage).
 
-The code written fully using gen AI, for me to learn more about software engineering prompting.
+## Features
 
-## Available Scripts
+- **Browse Pokémon**: Explore a list of Pokémon retrieved directly from PokeAPI.
+- **Search Pokémon**: Search for specific Pokémon by name.
+- **Filter by Type**: Filter Pokémon based on their type.
+- **View Details**: Click on any Pokémon to view detailed information, such as height, weight, abilities, and stats.
+- **Add to Favorites**: Save your favorite Pokémon locally in your browser for easy access.
+- **Responsive Design**: Optimized for both desktop and mobile devices.
 
-In the project directory, you can run:
+## Technologies Used
 
-### `npm start`
+- **React**: A JavaScript library for building user interfaces.
+- **Material-UI**: React components for faster and easier web development with a consistent design.
+- **PokeAPI**: A free-to-use API providing detailed information about Pokémon.
+- **Local Storage**: Favorites are saved locally using the browser’s Local Storage.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Getting Started
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Prerequisites
 
-### `npm test`
+To run this application, you need to have the following installed:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [Node.js](https://nodejs.org/) (v14 or above)
+- [npm](https://www.npmjs.com/) (Node Package Manager) or [yarn](https://yarnpkg.com/)
 
-### `npm run build`
+### Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone the repository:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    ```bash
+    git clone https://github.com/yourusername/pokeweb.git
+    ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Navigate to the project directory:
 
-### `npm run eject`
+    ```bash
+    cd pokeweb
+    ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. Install dependencies:
 
-### `npm run build` fails to minify
+    ```bash
+    npm install
+    ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    or
+
+    ```bash
+    yarn install
+    ```
+
+### Running the Application
+
+1. Start the development server:
+
+    ```bash
+    npm start
+    ```
+
+    or
+
+    ```bash
+    yarn start
+    ```
+
+2. Open your browser and go to `http://localhost:3000` to see the app in action.
+
+## How It Works
+
+- **Public API**: The app communicates directly with the PokeAPI to fetch real-time data about Pokémon, including images, abilities, and stats.
+- **Favorites Management**: Pokémon added to your favorites are stored in the browser's local storage, so they persist between sessions.
+- **No Backend**: This application runs entirely on the frontend, and no server-side backend is needed.
+
+## Learning Purpose
+
+This project was fully generated and built using AI-assisted code generation. The purpose of this project is to improve my skills in software engineering, particularly in prompting and guiding AI tools to create functional, production-ready code.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
