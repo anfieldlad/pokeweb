@@ -1,53 +1,49 @@
-// src/pages/FavoritesPage.js
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import { Grid, Card, CardContent, CardMedia, Typography, Button } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const FavoritesPage = () => {
   const [favorites, setFavorites] = useState([]);
-  const [imageError, setImageError] = useState({}); // Menyimpan status error gambar
 
-  const defaultImage = 'https://via.placeholder.com/250?text=No+Image'; // Gambar default
-
+  // Fetch favorites from localStorage when component mounts
   useEffect(() => {
-    const savedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    setFavorites(savedFavorites);
+    const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    setFavorites(storedFavorites);
   }, []);
 
-  const removeFromFavorites = (name) => {
-    const updatedFavorites = favorites.filter(fav => fav.name !== name);
+  // Function to remove a Pokémon from favorites
+  const removeFromFavorites = (pokemonToRemove) => {
+    const updatedFavorites = favorites.filter(pokemon => pokemon.name !== pokemonToRemove.name);
     setFavorites(updatedFavorites);
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
-  };
-
-  const handleImageError = (index) => {
-    setImageError((prev) => ({
-      ...prev,
-      [index]: true,
-    }));
   };
 
   return (
     <div>
       <Typography variant="h4" gutterBottom align="center" color="primary">
-        Favorite Pokemon
+        Your Favorite Pokémon
       </Typography>
-      <Grid container spacing={3}>
-        {favorites.length > 0 ? (
-          favorites.map((pokemon, index) => (
+
+      {favorites.length === 0 ? (
+        <Typography variant="body1" align="center" sx={{ marginTop: '20px' }}>
+          No favorite Pokémon added yet.
+        </Typography>
+      ) : (
+        <Grid container spacing={3}>
+          {favorites.map((pokemon, index) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
               <Card>
                 <CardMedia
                   component="img"
                   height="250"
-                  image={imageError[index] ? defaultImage : pokemon.sprites.other['official-artwork'].front_default}
+                  image={pokemon?.sprites?.other?.['official-artwork']?.front_default || 'https://via.placeholder.com/250?text=No+Image'}
                   alt={pokemon.name}
-                  onError={() => handleImageError(index)} // Ganti gambar jika terjadi error
-                  style={{ objectFit: 'contain', backgroundColor: '#f7f7f7' }}
+                  sx={{ objectFit: 'contain', width: 'auto', margin: '0 auto' }}
+                  onError={(e) => (e.target.src = 'https://via.placeholder.com/250?text=No+Image')}
                 />
                 <CardContent>
                   <Typography
-                    variant="h5"
+                    variant="h6"
                     component="div"
                     align="center"
                     sx={{
@@ -65,28 +61,26 @@ const FavoritesPage = () => {
                     variant="contained"
                     color="primary"
                     fullWidth
+                    sx={{ marginTop: '10px' }}
                   >
                     View Details
                   </Button>
+                  {/* Add Remove from Favorites Button */}
                   <Button
                     variant="outlined"
                     color="secondary"
-                    onClick={() => removeFromFavorites(pokemon.name)}
                     fullWidth
-                    style={{ marginTop: '10px' }}
+                    onClick={() => removeFromFavorites(pokemon)}
+                    sx={{ marginTop: '10px' }}
                   >
                     Remove from Favorites
                   </Button>
                 </CardContent>
               </Card>
             </Grid>
-          ))
-        ) : (
-          <Typography variant="h6" align="center" sx={{ marginTop: '50px' }}>
-            No favorite Pokemon added yet.
-          </Typography>
-        )}
-      </Grid>
+          ))}
+        </Grid>
+      )}
     </div>
   );
 };

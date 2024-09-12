@@ -25,7 +25,7 @@ function App() {
       <Container sx={{ marginTop: '20px' }}>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/pokemon/:id" element={<DetailPage />} />
+          <Route path="/pokemon/:pokemonName" element={<DetailPage />} />
           <Route path="/favorites" element={<FavoritesPage />} />
         </Routes>
       </Container>
